@@ -1,0 +1,23 @@
+<% layout('layouts/app') %>
+
+<div class="row mb-5">
+    <div class="col-6 offset-3">
+        <div class="card">
+            <img src="<%= place.image %>" alt="<%= place.title %>" class="card-img-top">
+            <div class="card-body">
+                <h5 class="card-title"><%= place.title %></h5>
+                <p class="card-text"><%= place.description %></p>
+            </div>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item"><%= place.location %></li>
+                <li class="list-group-item"><%= place.price %></li>
+            </ul>
+            <div class="card-body">
+                <a href="/places/<%= place._id %>/edit" class="btn btn-warning text-white">Edit</a>
+                <form action="/places/<%= place._id %>?_method=DELETE" method="POST" style="display:inline!important;">
+                    <button class="btn btn-danger">Delete</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

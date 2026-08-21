@@ -28,17 +28,17 @@ app.set('views', path.join(__dirname, 'views'));
 
 //middleware
 app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 app.use(methodOverride('_method'));
 
 const validatePlace = (req, res, next) => {
-    const {error} = placeSchema.validate(req.body)
-    if(error) {
-        const msg = error.details.map(el => el.message).join('')
-        return next(new ErrorHandler(msg, 400))
-    } else {
-        next();
+    const { error } = placeSchema.validate(req.body);
+    if (error) {
+        const msg = error.details.map(el => el.message).join(', ');
+        return next(new ErrorHandler(msg, 400));
     }
-}
+    next();
+};
 
 app.get('/', (req, res) => {
     res.render('home');
